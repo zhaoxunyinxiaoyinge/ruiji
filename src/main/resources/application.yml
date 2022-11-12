@@ -1,0 +1,24 @@
+serve:
+  port:8086
+spring:
+  application:
+    name:saller_ruijie
+  datasource:
+    url: jdbc:mysql://localhost:3306/saller?useSSL=false
+    username: root
+    password:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mybatis-plus:
+    configuration:
+      #这里主要为了配置，驼峰名法，如果表名是下划线
+      map-underscore-to-camel-case:true
+      log-impl:org.apache.ibtais.logging.stdout.StdOutImpl
+    global-config:
+      db-config:
+        id-type:ASSIGN_ID
+rejgi:
+      path: D:/
+
+
+
