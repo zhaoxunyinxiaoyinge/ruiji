@@ -30,7 +30,7 @@ echo  码拉去完成
 echo 开始打包
  output=`mvn clean package -Dmaven.test.skip=true`
 
- cd tartget
+ cd target
 
  echo 启动项目
 
