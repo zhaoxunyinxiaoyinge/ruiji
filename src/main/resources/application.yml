@@ -16,9 +16,21 @@ spring:
     global-config:
       db-config:
         id-type:ASSIGN_ID
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 0
+        max-wait: 1ms
+        max-idle: 4
 rejgi:
       path: D:/
 server:
   port: 8081
+
+
 
 
