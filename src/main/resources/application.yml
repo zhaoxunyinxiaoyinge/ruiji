@@ -1,5 +1,4 @@
-serve:
-  port:8086
+
 spring:
   application:
     name:saller_ruijie
@@ -19,6 +18,7 @@ spring:
         id-type:ASSIGN_ID
 rejgi:
       path: D:/
-
+server:
+  port: 8081
 
 
