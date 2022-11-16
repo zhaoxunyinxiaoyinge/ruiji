@@ -34,7 +34,7 @@ echo 开始打包
 
  echo 启动项目
 
- nohub java -jar saller_ruiji-1.0-SNAPSHOT.jar &> ruiji.log &
+ nohub java -jar saller_ruiji-1.0-SNAPSHOT.jar &> ./../ruiji.log &
 
  echo 启动完成
 
