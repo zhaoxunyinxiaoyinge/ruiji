@@ -26,6 +26,9 @@ spring:
         min-idle: 0
         max-wait: 1ms
         max-idle: 4
+  cache:
+    redis:
+      time-to-live: 18000000
 rejgi:
       path: D:/
 server:

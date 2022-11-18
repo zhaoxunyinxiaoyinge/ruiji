@@ -10,8 +10,11 @@ import com.aidouc.service.Impl.SetmealDishService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
+import org.codehaus.jackson.map.annotate.JsonCachable;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +32,7 @@ public class SetMealController {
     private CategoryService categoryService;
 
     @PostMapping
+    @CacheEvict(value = "setmeal",allEntries = true)
     public Result<String> saveSeaml(@RequestBody SetmealDto setmealDto) {
         log.info(setmealDto.toString());
         return setMealService.saves(setmealDto);
@@ -56,12 +60,15 @@ public class SetMealController {
     }
 
     @DeleteMapping
+    @CacheEvict(value = "setmeal",allEntries = true)//这里处理setmeal下所有的缓存数据
     public Result<String> removeBatchs(Long[] ids) {
         log.info("开始删除");
         return setMealService.deleteWidthIds(ids);
     }
 
     @GetMapping("/list")
+    //设置当前查询条件的缓存条件
+    @Cacheable(value = "setmeal",key="#setmeal.categoryId+''+ #setmeal.status")
     public Result<List<Setmeal>> getSetmeal(Setmeal setmeal) {
         LambdaQueryWrapper<Setmeal> lwt = new LambdaQueryWrapper<>();
         lwt.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
